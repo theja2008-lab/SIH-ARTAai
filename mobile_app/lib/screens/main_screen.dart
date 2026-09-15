@@ -78,29 +78,37 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
-                  return Stack(
-                    fit: StackFit.expand,
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      ...previousChildren,
-                      if (currentChild != null) currentChild,
-                    ],
-                  );
-                },
-                child: _buildCurrentScreen(state.currentScreen),
-              ),
-            ),
-            ArtaCompanionWidget(
-              textToSpeak: _getArtaText(state.currentScreen, state.language),
-              language: state.language,
-            ),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Fix for Flutter Web startup tiny viewport bug
+            if (constraints.maxHeight < 100 || constraints.maxWidth < 100) {
+              return const SizedBox.shrink();
+            }
+            return Column(
+              children: [
+                Expanded(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
+                      return Stack(
+                        fit: StackFit.expand,
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          ...previousChildren,
+                          if (currentChild != null) currentChild,
+                        ],
+                      );
+                    },
+                    child: _buildCurrentScreen(state.currentScreen),
+                  ),
+                ),
+                ArtaCompanionWidget(
+                  textToSpeak: _getArtaText(state.currentScreen, state.language),
+                  language: state.language,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
