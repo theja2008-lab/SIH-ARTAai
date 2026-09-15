@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ARTINO — AI Digital Companion for Traditional Artisans</title>
+
+  <!-- Google Fonts: Inter & Noto Sans Tamil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Header Bar -->
+    <header class="app-header">
+      <div class="brand-title">
+        <span>ARTINO</span>
+        <span class="brand-badge">AI ARTISAN</span>
+      </div>
+      <select id="app-lang-select" onchange="window.artaApp.selectLanguage(this.value)" style="font-size: 0.84rem; font-weight: 700; color: var(--primary-blue); background: var(--primary-blue-light); padding: 6px 12px; border-radius: 12px; border: 1px solid rgba(30,64,175,0.3); outline: none; cursor: pointer;">
+        <option value="ta" selected>🇮🇳 தமிழ் (Tamil)</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+        <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+        <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+        <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+        <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+        <option value="mr">🇮🇳 मराठी (Marathi)</option>
+        <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+        <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+      </select>
+    </header>
+
+    <!-- Main Dynamic Screen View Holder -->
+    <main id="screen-view-holder" class="screen-view">
+      <!-- Screen templates populated by app.js -->
+    </main>
+
+    <!-- Floating ARTA Companion Orb Bar -->
+    <div class="arta-floating-bar">
+      <!-- Small Circular Orb / Avatar -->
+      <div id="arta-avatar-element" class="arta-avatar">
+        <span>A</span>
+        <div class="arta-avatar-ring"></div>
+      </div>
+
+      <div class="arta-speech-box">
+        <div class="arta-name">
+          <span id="arta-status-text">ARTA • AI COMPANION</span>
+          <!-- Replay Audio Button -->
+          <button class="arta-speaker-replay-btn" onclick="window.artaApp.arta.replayLastSpeech()">
+            <span>🔊 REPLAY</span>
+          </button>
+        </div>
+        
+        <!-- Large Primary Conversational Speech Text -->
+        <div id="arta-speech-text" class="arta-text">
+          வணக்கம்! நான் ஆர்டா. உங்கள் கைவினைக்கான AI உதவியாளன்.
+        </div>
+
+        <!-- Audio Waveform Visualizer -->
+        <div id="arta-waveform-bars" class="audio-waveform-bars" style="display: none; margin-top: 6px;">
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/arta.js"></script>
+  <script src="/js/camera.js"></script>
+  <script src="/js/catalog.js"></script>
+  <script src="/js/app.js"></script>
+
+</body>
+</html>
